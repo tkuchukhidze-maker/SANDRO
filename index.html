@@ -372,7 +372,7 @@ body{background:var(--night);color:var(--white);font-family:var(--font);overflow
       if(!reduce)trail(bx,by);
     }else{
       var d=seg(t,T_GOAL,T_GOAL+.6),bounce=d<.6?ease(d/.6):1-.12*sin((d-.6)/.4*PI);
-      bx=BALL_END[0]-5*d;by=lerp(BALL_END[1],250,bounce);bs=.55;br=0;
+      bx=BALL_END[0]+3*d;by=lerp(BALL_END[1],250,bounce);bs=.55;br=0;
     }
     tf(ball,'translate('+bx.toFixed(1)+','+by.toFixed(1)+') scale('+bs.toFixed(3)+') rotate('+br.toFixed(0)+')');
 
@@ -400,7 +400,7 @@ body{background:var(--night);color:var(--white);font-family:var(--font);overflow
 
     /* keeper: dives the right way and still misses it */
     var kw=ease(seg(t,T_WIND,T_KICK+.3)),kd=ease(seg(t,T_KICK+.38,T_KICK+1.08)),kl=ease(seg(t,T_GOAL+.1,T_GOAL+.6));
-    var kx=lerp(200+(t>0&&t<T_WIND?12*sin(t*4):0),lerp(178,192,kl),kd),ky=lerp(262,lerp(252,262,kl),kd);
+    var kx=lerp(200+(t>0&&t<T_WIND?12*sin(t*4):0),lerp(178,138,kl),kd),ky=lerp(262,lerp(252,262,kl),kd);
     var krot=lerp(50*kd,86,kl),ksy=1.5*(1-.1*kw*(1-kd));
     tf(keeper,'translate('+kx.toFixed(1)+','+ky.toFixed(1)+') rotate('+krot.toFixed(1)+') scale(1.5,'+ksy.toFixed(3)+')');
     kStand.setAttribute('opacity',kd<.2?1:0);kDive.setAttribute('opacity',kd<.2?0:1);
